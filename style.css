@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "PingFang TC", sans-serif;
+  background-color: #f1f2f6;
+  padding: 40px 20px;
+}
+
+.flex-assignment-wrapper {
+  max-width: 1200px; /* 測試上限 1200px */
+  margin: 0 auto;
+}
+
+/* ==========================================
+   組件 1: 導覽列 (Flex)
+   ========================================== */
+.flex-nav {
+  display: flex;
+  justify-content: space-between; /* 滿足規範：兩端對齊 */
+  align-items: center;            /* 滿足規範：垂直置中 */
+  gap: 20px;                      /* 滿足規範：元件間距 */
+  
+  background-color: #ffffff;
+  padding: 15px 30px;
+  border-radius: 6px;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.nav-logo {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #2c3e50;
+  flex-grow: 0; /* 靠內容自然撐開 */
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+  gap: 30px; /* 控制連結間的分隙 */
+  flex-grow: 1; /* 彈性拉伸佔據剩餘空間 */
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #34495e;
+  font-size: 0.95rem;
+}
+
+.nav-cta {
+  text-decoration: none;
+  background-color: #e67e22;
+  color: #ffffff;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  flex-grow: 0;
+}
+
+/* ==========================================
+   組件 2: 卡片列 (Flex)
+   ========================================== */
+.flex-card-row {
+  display: flex;
+  justify-content: space-between; /* 滿足規範：水平分配 */
+  align-items: stretch;           /* 滿足規範：讓三張卡片自動等高 */
+  gap: 24px;                      /* 滿足規範：間距設定 */
+}
+
+.flex-card {
+  display: flex;
+  flex-direction: column; /* 卡片內部維持上下垂直流 */
+  
+  /* 技術限制核心：絕不用 width: 200px，改用百分比比例與彈性基數 */
+  flex-basis: 33.33%; 
+  flex-grow: 1;
+  
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+
+.card-thumb {
+  width: 100%;
+  height: 180px;
+  object-fit: cover; /* 縮放不變形 */
+}
+
+.flex-card-title {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  padding: 16px 16px 8px 16px;
+}
+
+.flex-card-desc {
+  font-size: 0.88rem;
+  color: #636e72;
+  padding: 0 16px 16px 16px;
+  line-height: 1.5;
+}
+
+/* ==========================================
+   響應式斷點測試 (相容 768px 與 320px 手機寬度)
+   ========================================== */
+@media (max-width: 768px) {
+  .flex-nav {
+    flex-direction: column; /* 平板及手機端轉為垂直排列 */
+    padding: 20px;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 12px;
+    margin: 15px 0;
+  }
+  .flex-card-row {
+    flex-direction: column; /* 窄幅螢幕時，卡片由橫變直 */
+    gap: 20px;
+  }
+}
